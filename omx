@@ -1,17 +1,37 @@
-# Mapping des boutons à des vidéos
-declare -A button_map=([BTN_TRIGGER]='/chemin/vers/video1.mp4' [BTN_THUMB]='/chemin/vers/video2.mp4' [BTN_THUMB2]='/chemin/vers/video3.mp4' [BTN_TOP]='/chemin/vers/video4.mp4')
+#!/bin/bash
 
-# Recherche de la manette
-gamepad=$(jstest --normal /dev/input/js0 | awk 'NR==2{print $1}')
+# Définir les chemins vers les vidéos
+video1="video/video1.mp4"
+video2="video/video2.mp4"
+video3="video/video3.mp4"
+video4="video/video4.mp4"
 
-# Boucle d'écoute des entrées de la manette
-while read -r line; do
-  # Extraire le nom et l'état du bouton
-  button=$(echo $line | awk '{print $1}')
-  state=$(echo $line | awk '{print $2}')
+# Lire la première vidéo par défaut
+omxplayer $video1 &
 
-  # Démarrer la vidéo associée au bouton s'il est enfoncé
-  if [ "$state" == "1" ] && [ "${button_map[$button]+isset}" ]; then
-    omxplayer "${button_map[$button]}"
+# Boucle d'écoute pour les boutons
+while true; do
+  # Lire la vidéo 1 si BTN_TRIGGER est appuyé
+  if [ "$(cat /dev/input/event4)" == "1" ]; then
+    pkill omxplayer
+    omxplayer $video1 &
   fi
-done < <(jstest --event /dev/input/by-id/$gamepad)
+
+  # Lire la vidéo 2 si BTN_THUMB est appuyé
+  if [ "$(cat /dev/input/event4)" == "1" ]; then
+    pkill omxplayer
+    omxplayer $video2 &
+  fi
+
+  # Lire la vidéo 3 si BTN_THUMB2 est appuyé
+  if [ "$(cat /dev/input/event4)" == "1" ]; then
+    pkill omxplayer
+    omxplayer $video3 &
+  fi
+
+  # Lire la vidéo 4 si BTN_TOP est appuyé
+  if [ "$(cat /dev/input/event4)" == "1" ]; then
+    pkill omxplayer
+    omxplayer $video4 &
+  fi
+done
