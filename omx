@@ -1,20 +1,17 @@
-#!/bin/bash
+# Mapping des boutons à des vidéos
+declare -A button_map=([BTN_TRIGGER]='/chemin/vers/video1.mp4' [BTN_THUMB]='/chemin/vers/video2.mp4' [BTN_THUMB2]='/chemin/vers/video3.mp4' [BTN_TOP]='/chemin/vers/video4.mp4')
 
-# Mapping des entrées de bouton
-TRIGGER=1
-THUMB=2
-THUMB2=3
-TOP=4
+# Recherche de la manette
+gamepad=$(jstest --normal /dev/input/js0 | awk 'NR==2{print $1}')
 
-# ...
+# Boucle d'écoute des entrées de la manette
+while read -r line; do
+  # Extraire le nom et l'état du bouton
+  button=$(echo $line | awk '{print $1}')
+  state=$(echo $line | awk '{print $2}')
 
-# Boucle d'écoute des entrées de bouton
-while true; do
-  read -r ev < /dev/input/eventX
-  case $ev in
-    $TRIGGER) omxplayer -o local video1.mp4 ;;
-    $THUMB) omxplayer -o local video2.mp4 ;;
-    $THUMB2) omxplayer -o local video3.mp4 ;;
-    $TOP) omxplayer -o local video4.mp4 ;;
-  esac
-done
+  # Démarrer la vidéo associée au bouton s'il est enfoncé
+  if [ "$state" == "1" ] && [ "${button_map[$button]+isset}" ]; then
+    omxplayer "${button_map[$button]}"
+  fi
+done < <(jstest --event /dev/input/by-id/$gamepad)
