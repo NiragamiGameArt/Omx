@@ -1,0 +1,16 @@
+#!/bin/bash
+
+video1="/chemin/vers/la/premiere/video.mp4"
+video2="/chemin/vers/la/deuxieme/video.mp4"
+video3="/chemin/vers/la/troisieme/video.mp4"
+video4="/chemin/vers/la/quatrieme/video.mp4"
+
+if [ "$1" == "trigger" ]; then
+  omxplayer $video1
+elif [ "$1" == "thumb" ]; then
+  omxplayer $video2
+elif [ "$1" == "thumb2" ]; then
+  omxplayer $video3
+elif [ "$1" == "top" ]; then
+  omxplayer $video4
+fi
