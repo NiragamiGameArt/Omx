@@ -5,12 +5,25 @@ video2="/chemin/vers/la/deuxieme/video.mp4"
 video3="/chemin/vers/la/troisieme/video.mp4"
 video4="/chemin/vers/la/quatrieme/video.mp4"
 
-if [ "$1" == "trigger" ]; then
-  omxplayer $video1
-elif [ "$1" == "thumb" ]; then
-  omxplayer $video2
-elif [ "$1" == "thumb2" ]; then
-  omxplayer $video3
-elif [ "$1" == "top" ]; then
-  omxplayer $video4
-fi
+# Fonction pour arrêter la vidéo en cours
+stop_video() {
+  killall omxplayer.bin
+}
+
+# Boucle infinie pour lire les vidéos
+while :
+do
+  if [ "$1" == "trigger" ]; then
+    stop_video
+    omxplayer --loop $video1
+  elif [ "$1" == "thumb" ]; then
+    stop_video
+    omxplayer --loop $video2
+  elif [ "$1" == "thumb2" ]; then
+    stop_video
+    omxplayer --loop $video3
+  elif [ "$1" == "top" ]; then
+    stop_video
+    omxplayer --loop $video4
+  fi
+done
