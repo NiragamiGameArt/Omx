@@ -1,9 +1,9 @@
 #!/bin/bash
 
-video1="/chemin/vers/la/premiere/video.mp4"
-video2="/chemin/vers/la/deuxieme/video.mp4"
-video3="/chemin/vers/la/troisieme/video.mp4"
-video4="/chemin/vers/la/quatrieme/video.mp4"
+video1="video/video1.mp4"
+video2="video/video2.mp4"
+video3="video/video3.mp4"
+video4="video/video4.mp4"
 
 # Fonction pour arrêter la vidéo en cours
 stop_video() {
