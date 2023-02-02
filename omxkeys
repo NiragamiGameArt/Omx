@@ -1,9 +1,9 @@
 #!/bin/sh
 # Bouton 1 - Vidéo 1
-echo " KEY_1 omxplayer -o hdmi video/video1.mp4" >> ~/.omxkeys
+echo " BTN_TRIGGER omxplayer -o hdmi video/video1.mp4" >> ~/.omxkeys
 # Bouton 2 - Vidéo 2
-echo " KEY_2 omxplayer -o hdmi video/video2.mp4" >> ~/.omxkeys
+echo " BTN_THUMB omxplayer -o hdmi video/video2.mp4" >> ~/.omxkeys
 # Bouton 3 - Vidéo 3
-echo " KEY_3 omxplayer -o hdmi video/video3.mp4" >> ~/.omxkeys
+echo " BTN_THUMB2 omxplayer -o hdmi video/video3.mp4" >> ~/.omxkeys
 # Bouton 4 - Vidéo 4
-echo " KEY_4 omxplayer -o hdmi video/video4.mp4" >> ~/.omxkeys
+echo " BTN_TOP omxplayer -o hdmi video/video4.mp4" >> ~/.omxkeys
