@@ -1,29 +1,22 @@
 #!/bin/bash
 
-video1="video/video1.mp4"
-video2="video/video2.mp4"
-video3="video/video3.mp4"
-video4="video/video4.mp4"
+jstest /dev/input/js0
 
-# Fonction pour arrêter la vidéo en cours
-stop_video() {
-  killall omxplayer.bin
-}
-
-# Boucle infinie pour lire les vidéos
-while :
-do
-  if [ "$1" == "trigger" ]; then
-    stop_video
-    omxplayer --loop $video1
-  elif [ "$1" == "thumb" ]; then
-    stop_video
-    omxplayer --loop $video2
-  elif [ "$1" == "thumb2" ]; then
-    stop_video
-    omxplayer --loop $video3
-  elif [ "$1" == "top" ]; then
-    stop_video
-    omxplayer --loop $video4
+while true; do
+  button_state=$(jstest /dev/input/js0 | grep BTN_TRIGGER | awk '{print $3}')
+  if [ "$button_state" == "1" ]; then
+    omxplayer -o hdmi video1.mp4
+  fi
+  button_state=$(jstest /dev/input/js0 | grep BTN_THUMB | awk '{print $3}')
+  if [ "$button_state" == "1" ]; then
+    omxplayer -o hdmi video2.mp4
+  fi
+  button_state=$(jstest /dev/input/js0 | grep BTN_THUMB2 | awk '{print $3}')
+  if [ "$button_state" == "1" ]; then
+    omxplayer -o hdmi video3.mp4
+  fi
+  button_state=$(jstest /dev/input/js0 | grep BTN_TOP | awk '{print $3}')
+  if [ "$button_state" == "1" ]; then
+    omxplayer -o hdmi video4.mp4
   fi
 done

@@ -7,3 +7,4 @@ echo " BTN_THUMB omxplayer -o hdmi video/video2.mp4" >> ~/.omxkeys
 echo " BTN_THUMB2 omxplayer -o hdmi video/video3.mp4" >> ~/.omxkeys
 # Bouton 4 - Vidéo 4
 echo " BTN_TOP omxplayer -o hdmi video/video4.mp4" >> ~/.omxkeys
+    
