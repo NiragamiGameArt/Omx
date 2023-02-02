@@ -1,13 +1,20 @@
 #!/bin/bash
 
-# Bouton A
-bind '"\x01\x00\x00\x00"' "omxplayer -o hdmi video/video1.mp4"
+# Mapping des entrées de bouton
+TRIGGER=1
+THUMB=2
+THUMB2=3
+TOP=4
 
-# Bouton B
-bind '"\x02\x00\x00\x00"' "omxplayer -o hdmi video/video2.mp4"
+# ...
 
-# Bouton X
-bind '"\x03\x00\x00\x00"' "omxplayer -o hdmi video/video3.mp4"
-
-# Bouton Y
-bind '"\x04\x00\x00\x00"' "omxplayer -o hdmi video/video4.mp4"
+# Boucle d'écoute des entrées de bouton
+while true; do
+  read -r ev < /dev/input/eventX
+  case $ev in
+    $TRIGGER) omxplayer -o local video1.mp4 ;;
+    $THUMB) omxplayer -o local video2.mp4 ;;
+    $THUMB2) omxplayer -o local video3.mp4 ;;
+    $TOP) omxplayer -o local video4.mp4 ;;
+  esac
+done
