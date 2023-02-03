@@ -12,25 +12,25 @@ omxplayer $video1 &
 # Boucle d'écoute pour les boutons
 while true; do
   # Lire la vidéo 1 si BTN_TRIGGER est appuyé
-  if [ "$(cat /dev/input/event4)" == "1" ]; then
+  if [ "$(evtest /dev/input/event4)" == "1" ]; then
     pkill omxplayer
     omxplayer $video1 &
   fi
 
   # Lire la vidéo 2 si BTN_THUMB est appuyé
-  if [ "$(cat /dev/input/event4)" == "1" ]; then
+  if [ "$(evtest /dev/input/event4)" == "1" ]; then
     pkill omxplayer
     omxplayer $video2 &
   fi
 
   # Lire la vidéo 3 si BTN_THUMB2 est appuyé
-  if [ "$(cat /dev/input/event4)" == "1" ]; then
+  if [ "$(evtest /dev/input/event4)" == "1" ]; then
     pkill omxplayer
     omxplayer $video3 &
   fi
 
   # Lire la vidéo 4 si BTN_TOP est appuyé
-  if [ "$(cat /dev/input/event4)" == "1" ]; then
+  if [ "$(evtest /dev/input/event4)" == "1" ]; then
     pkill omxplayer
     omxplayer $video4 &
   fi
