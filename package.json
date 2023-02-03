@@ -1,0 +1,25 @@
+{
+  "name": "omx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiragamiGameArt/Omx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NiragamiGameArt/Omx/issues"
+  },
+  "homepage": "https://github.com/NiragamiGameArt/Omx#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "gamecontroller": "^0.0.2",
+    "node-hid": "^2.1.2",
+    "nodejs": "^0.0.0"
+  }
+}
